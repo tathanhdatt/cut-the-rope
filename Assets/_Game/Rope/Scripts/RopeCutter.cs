@@ -11,6 +11,9 @@ public class RopeCutter : VisualNode, ILeafNode
     [SerializeField, Required]
     private Transform graphic;
 
+    [SerializeField]
+    private int cutTimes;
+
     [SerializeField, ReadOnly]
     private Vector3 lastWorldPosition;
 
@@ -20,7 +23,7 @@ public class RopeCutter : VisualNode, ILeafNode
     [SerializeField, ReadOnly]
     private bool isLevelWin;
     
-    private readonly RaycastHit2D[] hits = new RaycastHit2D[1];
+    private readonly RaycastHit2D[] hits = new RaycastHit2D[2];
 
     private readonly ContactFilter2D filter2D = new ContactFilter2D()
     {
@@ -30,7 +33,7 @@ public class RopeCutter : VisualNode, ILeafNode
     public override async UniTask Initialize()
     {
         await base.Initialize();
-        Messenger.AddListener(Message.LevelWin, LevelWinHandler);
+        Messenger.AddListener(Message.LevelWin, TurnOffCutting);
         this.graphic.gameObject.SetActive(false);
     }
 
@@ -57,9 +60,9 @@ public class RopeCutter : VisualNode, ILeafNode
         LeanTouch.OnFingerUpdate -= OnFingerUpdateHandler;
     }
 
-    private void LevelWinHandler()
+    private void TurnOffCutting()
     {
-        Messenger.RemoveListener(Message.LevelWin, LevelWinHandler);
+        Messenger.RemoveListener(Message.LevelWin, TurnOffCutting);
         this.isLevelWin = true;
     }
 
@@ -97,7 +100,13 @@ public class RopeCutter : VisualNode, ILeafNode
             if (hit == default) continue;
             ICuttable cuttable = hit.collider.GetComponent<ICuttable>();
             if (cuttable == null) continue;
+            if (cuttable.IsCut) continue;
             cuttable.Cut();
+            this.cutTimes--;
+            if (this.cutTimes <= 0)
+            {
+                TurnOffCutting();
+            }
             break;
         }
     }

@@ -13,8 +13,11 @@ public class Chunk : MonoBehaviour, ICuttable
 
     public event Action OnCut;
 
+    public bool IsCut { get; set; } = false;
+
     public void Cut()
     {
+        IsCut = true;
         this.joint2D.enabled = false;
         OnCut?.Invoke();
     }

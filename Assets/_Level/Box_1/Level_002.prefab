@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -269,7 +269,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -576,7 +576,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -725,7 +725,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -1555,7 +1555,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -1776,7 +1776,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -2177,7 +2177,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -2398,7 +2398,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -2531,7 +2531,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -2634,7 +2634,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -2942,7 +2942,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -3250,7 +3250,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -3471,7 +3471,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -3605,7 +3605,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -3739,7 +3739,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -4308,7 +4308,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -4442,7 +4442,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -4924,7 +4924,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -5058,7 +5058,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -5192,7 +5192,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -5326,7 +5326,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -5460,7 +5460,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -5594,7 +5594,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -5989,7 +5989,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -6123,7 +6123,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -6257,7 +6257,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -6391,7 +6391,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -6612,7 +6612,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -6891,7 +6891,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -7025,7 +7025,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -7333,7 +7333,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -7641,7 +7641,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -7949,7 +7949,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -8083,7 +8083,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -8217,7 +8217,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -8351,7 +8351,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -8485,7 +8485,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -8706,7 +8706,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -8840,7 +8840,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -9148,7 +9148,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -9369,7 +9369,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -9502,7 +9502,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -9605,7 +9605,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1
@@ -9826,7 +9826,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 8
   m_LinearDamping: 0.1
   m_AngularDamping: 1
   m_GravityScale: 1

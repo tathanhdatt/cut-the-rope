@@ -13,6 +13,14 @@ public class Rope : MonoBehaviour
         {
             chunk.OnCut += OnCutHandler;
         }
+
+        Messenger.AddListener(Message.LevelWin, LevelWinHandler);
+    }
+
+    private void LevelWinHandler()
+    {
+        Messenger.RemoveListener(Message.LevelWin, LevelWinHandler);
+        FadeChucks();
     }
 
     private void OnCutHandler()
@@ -20,6 +28,15 @@ public class Rope : MonoBehaviour
         foreach (Chunk chunk in this.chunks)
         {
             chunk.OnCut -= OnCutHandler;
+            chunk.IsCut = true;
+        }
+        FadeChucks();
+    }
+
+    private void FadeChucks()
+    {
+        foreach (Chunk chunk in this.chunks)
+        {
             chunk.FadeGraphic();
         }
     }
