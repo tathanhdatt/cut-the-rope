@@ -19,6 +19,15 @@ public class LevelView : BaseView
     [SerializeField, Required]
     private Button backButton;
 
+    [SerializeField]
+    private float snappingVelocity;
+
+    [SerializeField]
+    private float snappingDuration;
+
+    [SerializeField]
+    private float velocity;
+
     [Title("Levels")]
     [SerializeField, Required]
     private GameObject levelContent;
@@ -28,6 +37,8 @@ public class LevelView : BaseView
 
     [SerializeField]
     private Sprite[] stars;
+
+    private Tweener snappingTweener;
 
     public event Action<int> OnSelectedBox;
     public event Action OnClickBack;
@@ -39,8 +50,49 @@ public class LevelView : BaseView
         this.backButton.onClick.AddListener(() => OnClickBack?.Invoke());
     }
 
+    [SerializeField]
+    private Vector2 a;
+
+    private void Update()
+    {
+        this.a = this.boxScrollRect.normalizedPosition;
+    }
+
     private void OnValueChangedHandler(Vector2 pos)
     {
+        this.velocity = this.boxScrollRect.velocity.x;
+        if (Mathf.Abs(this.boxScrollRect.velocity.x) > this.snappingVelocity)
+        {
+            this.snappingTweener?.Kill();
+            return;
+        }
+
+        if (this.snappingTweener.IsActive())
+        {
+            return;
+        }
+
+        pos = this.boxScrollRect.normalizedPosition;
+        pos *= 100;
+        float rangePerBox = 100f / (this.boxScrollRect.content.childCount - 1);
+        Debug.Log(rangePerBox);
+        float remainder = pos.x % rangePerBox;
+        pos.x -= remainder;
+        Debug.Log("pos"+pos.x);
+        if (remainder >= rangePerBox / 2)
+        {
+            remainder = rangePerBox;
+        }
+        else
+        {
+            remainder = 0;
+        }
+
+        pos.x += remainder;
+        pos /= 100f;
+        this.snappingTweener = this.boxScrollRect
+            .DONormalizedPos(pos, this.snappingDuration)
+            .SetEase(Ease.OutQuad);
     }
 
     public override async UniTask Show()

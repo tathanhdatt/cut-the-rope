@@ -2655,6 +2655,9 @@ MonoBehaviour:
   boxScrollRect: {fileID: 1217649206}
   boxPrefab: {fileID: 582030116247778795, guid: fabf0f50968fa8d4c9569a323daf0532, type: 3}
   backButton: {fileID: 601184145}
+  snappingVelocity: 50
+  snappingDuration: 0.4
+  velocity: 0
   levelContent: {fileID: 275598208}
   levels:
   - {fileID: 1435218516011787427}
@@ -2666,6 +2669,7 @@ MonoBehaviour:
   - {fileID: -8285531334093953402, guid: 68bc87f73cff92245a93d8cbd5c4debb, type: 3}
   - {fileID: 8349907025964110264, guid: 68bc87f73cff92245a93d8cbd5c4debb, type: 3}
   - {fileID: -1178588518113524685, guid: 68bc87f73cff92245a93d8cbd5c4debb, type: 3}
+  a: {x: 0, y: 0}
 --- !u!1 &1011573624
 GameObject:
   m_ObjectHideFlags: 0
