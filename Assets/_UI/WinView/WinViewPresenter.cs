@@ -5,7 +5,7 @@ public class WinViewPresenter : BaseViewPresenter
     private WinView view;
     private LevelDatabase levelDatabase;
 
-    public WinViewPresenter(GamePresenter gamePresenter, 
+    public WinViewPresenter(GamePresenter gamePresenter,
         Transform transform, LevelDatabase levelDatabase) : base(gamePresenter, transform)
     {
         this.levelDatabase = levelDatabase;
@@ -18,7 +18,8 @@ public class WinViewPresenter : BaseViewPresenter
 
     protected override void OnShow()
     {
-        this.view.ShowStars(this.levelDatabase.GetCurrentLevelStar());
+        this.view.ShowStars(this.levelDatabase
+            .GetCurrentBox().GetCurrentLevelStar());
         base.OnShow();
         this.view.OnClickNext += OnClickNextHandler;
         this.view.OnClickReplay += OnClickReplayHandler;

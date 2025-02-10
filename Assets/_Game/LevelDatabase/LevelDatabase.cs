@@ -4,33 +4,35 @@ using System.Collections.Generic;
 [Serializable]
 public class LevelDatabase
 {
-    public int currentLevel = 1;
-
-
-    public int levelTop = 1;
-
-
-    private int currentBox = 1;
+    public int currentBoxId;
 
     public List<BoxDatabase> boxes = new List<BoxDatabase>();
 
-    public int GetCurrentLevelStar()
+    private const string BoxPath = "Assets/_Level/";
+
+    public LevelDatabase()
     {
-        return this.boxes[this.currentBox - 1].stars[this.currentLevel - 1];
+        int numBoxes = System.IO.Directory.GetDirectories(BoxPath).Length;
+        for (int i = 0; i < numBoxes; i++)
+        {
+            BoxDatabase boxDatabase = new BoxDatabase(i);
+            this.boxes.Add(boxDatabase);
+        }
     }
 
-    public void SetCurrentLevelStar(int star)
+    public int GetLevelStar(int boxId, int levelId)
     {
-        this.boxes[this.currentBox - 1].stars[this.currentLevel - 1] = star;
+        return this.boxes[boxId].GetStar(levelId);
+    }
+
+    public void SetLevelStar(int boxId, int levelId, int star)
+    {
+        this.boxes[boxId].SetStar(levelId, star);
     }
 
     public BoxDatabase GetCurrentBox()
     {
-        return this.boxes[this.currentBox - 1];
+        return this.boxes[this.currentBoxId];
     }
 
-    public void AddNewLevels()
-    {
-        this.boxes[this.currentBox - 1].stars.Add(0);
-    }
 }

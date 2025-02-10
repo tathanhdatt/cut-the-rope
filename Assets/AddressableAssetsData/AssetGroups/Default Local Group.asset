@@ -16,12 +16,12 @@ MonoBehaviour:
   m_GUID: de2afc53d91df0244be7237589226b09
   m_SerializeEntries:
   - m_GUID: 098ac8aeddd5ceb4fa3fb1a647e64b08
-    m_Address: Level_006
+    m_Address: Assets/_Level/Box_2/Level_003.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 208340c847c879a41b95be77458cda52
-    m_Address: Level_002
+    m_Address: Assets/_Level/Box_1/Level_002.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,22 +31,32 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5ace0546ca8a31242ad8a371474a70d6
-    m_Address: Level_005
+    m_Address: Assets/_Level/Box_2/Level_002.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7143c54bb8c7636478c3553831b93644
-    m_Address: Level_003
+    m_Address: Assets/_Level/Box_1/Level_003.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7455152f041bf394ca2f250810786fef
-    m_Address: Level_004
+    m_Address: Assets/_Level/Box_2/Level_001.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b45a05ef6035f0429433ff086e88844
-    m_Address: Level_001
+    m_Address: Assets/_Level/Box_1/Level_001.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62bab7749d7f984c805188f2411000c
+    m_Address: Assets/_Level/Box_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9b22a2921f960c4c8c03e013606ce9e
+    m_Address: Assets/_Level/Box_2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

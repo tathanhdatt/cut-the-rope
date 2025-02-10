@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Dt.Attribute;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HomeView : BaseView
+public class GameplayView : BaseView
 {
     [SerializeField, Required]
     private Image fadeBg;
     
     [SerializeField, Required]
-    private Button playButton;
+    private Button backButton;
     
-    public event Action OnClickPlay;
+    public event Action OnClickBack;
 
     public override async UniTask Initialize()
     {
         await base.Initialize();
-        this.playButton.onClick.AddListener(() => this.OnClickPlay?.Invoke());
+        this.backButton.onClick.AddListener(() => OnClickBack?.Invoke());
     }
 
     public override async UniTask Show()
@@ -31,7 +30,7 @@ public class HomeView : BaseView
     private async UniTask FadeOut()
     {
         await this.fadeBg.DOFade(0f, 0.6f)
-            .SetEase(Ease.InQuad).AsyncWaitForCompletion();
+            .SetEase(Ease.OutQuad).AsyncWaitForCompletion();
     }
 
     public override async UniTask Hide()

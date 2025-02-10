@@ -28,6 +28,12 @@ public class GamePresenter : MonoBehaviour
         WinViewPresenter winViewPresenter = new WinViewPresenter(
             this, transform, this.manager.LevelDatabase);
         AddPresenter(winViewPresenter);
+        LevelViewPresenter levelViewPresenter = new LevelViewPresenter(
+            this, transform, this.manager.LevelDatabase);
+        AddPresenter(levelViewPresenter);
+        GameplayViewPresenter gameplayViewPresenter = new GameplayViewPresenter(
+            this, transform);
+        AddPresenter(gameplayViewPresenter);
     }
 
     public async UniTask InitialViewPresenters()

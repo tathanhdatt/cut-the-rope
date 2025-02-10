@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.coffee.softmask-for-ugui": "https://github.com/mob-sakai/SoftMaskForUGUI.git?path=Packages/src",
     "com.cysharp.unitask": "file:D:/1/Assets/_myunitypackages/UniTask",
     "com.dt.attribute": "file:D:/1/Assets/_myunitypackages/com.dt/com.dt.attribute",
     "com.dt.behaviourtree.core": "file:D:/1/Assets/_myunitypackages/BehaviourTree",

@@ -42,8 +42,6 @@ namespace Core.Game
             if (data.IsNullOrEmpty())
             {
                 LevelDatabase = new LevelDatabase();
-                LevelDatabase.boxes.Add(new BoxDatabase());
-                LevelDatabase.AddNewLevels();
             }
             else
             {
@@ -66,54 +64,75 @@ namespace Core.Game
             Messenger.AddListener<int>(Message.PlayLevel, PlayLevel);
             Messenger.AddListener(Message.PlayNextLevel, PlayNextLevel);
             Messenger.AddListener(Message.Replay, ReplayHandler);
+            Messenger.AddListener(Message.ClearLevel, ClearLevelHandler);
             await this.presenter.GetViewPresenter<LoadingViewPresenter>().Show();
             await this.presenter.GetViewPresenter<HomeViewPresenter>().Show();
             await this.presenter.GetViewPresenter<LoadingViewPresenter>().Hide();
         }
 
+        private void ClearLevelHandler()
+        {
+            ClearLevel();
+        }
+
         private async void ReplayHandler()
         {
             await this.presenter.GetViewPresenter<WinViewPresenter>().Hide();
-            PlayLevel(LevelDatabase.currentLevel);
+            PlayLevel(LevelDatabase.GetCurrentBox().currentLevelId);
             await this.presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
         }
 
         private void CollectStarHandler()
         {
             this.collectedStar++;
-            int lastStar = LevelDatabase.GetCurrentLevelStar();
+            int lastStar = LevelDatabase.GetCurrentBox().GetCurrentLevelStar();
             if (this.collectedStar > lastStar)
             {
-                LevelDatabase.SetCurrentLevelStar(this.collectedStar);
+                LevelDatabase.GetCurrentBox()
+                    .SetCurrentLevelStar(this.collectedStar);
             }
         }
 
         private async void LevelLoseHandler()
         {
             await this.presenter.GetViewPresenter<TransitionViewPresenter>().Show();
-            PlayLevel(LevelDatabase.currentLevel);
+            PlayLevel(LevelDatabase.GetCurrentBox().currentLevelId);
             await this.presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
         }
 
-        private async void PlayLevel(int level)
+        private async void PlayLevel(int levelId)
         {
             this.collectedStar = 0;
-            LevelDatabase.currentLevel = level;
+            if (levelId >= LevelDatabase.GetCurrentBox().stars.Count)
+            {
+                LevelDatabase.currentBoxId += 1;
+                LevelDatabase.currentBoxId %= LevelDatabase.boxes.Count;
+                levelId = 0;
+            }
+
+            BoxDatabase currentBox = LevelDatabase.GetCurrentBox();
+            currentBox.currentLevelId = levelId;
+            ClearLevel();
+
+            if (currentBox.currentLevelId > currentBox.levelTopId)
+            {
+                currentBox.levelTopId = currentBox.currentLevelId;
+            }
+
+            string key =
+                $"Assets/_Level/Box_{LevelDatabase.currentBoxId + 1}/Level_{levelId + 1:D3}.prefab";
+            GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(key);
+            this.levelPlayer = Instantiate(prefab).GetComponent<LevelPlayer>();
+            await this.levelPlayer.Initialize();
+            this.levelPlayer.Play();
+        }
+
+        private void ClearLevel()
+        {
             if (this.levelPlayer != null)
             {
                 Destroy(this.levelPlayer.gameObject);
             }
-
-            if (LevelDatabase.currentLevel > LevelDatabase.levelTop)
-            {
-                LevelDatabase.levelTop = LevelDatabase.currentLevel;
-                LevelDatabase.AddNewLevels();
-            }
-
-            GameObject prefab = await Addressables.LoadAssetAsync<GameObject>($"Level_{level:D3}");
-            this.levelPlayer = Instantiate(prefab).GetComponent<LevelPlayer>();
-            await this.levelPlayer.Initialize();
-            this.levelPlayer.Play();
         }
 
         private async void LevelWinHandler()
@@ -125,13 +144,12 @@ namespace Core.Game
 
         private void UpdateLevelTop()
         {
-            LevelDatabase.levelTop += 1;
-            LevelDatabase.AddNewLevels();
+            LevelDatabase.GetCurrentBox().levelTopId += 1;
         }
 
         private void PlayNextLevel()
         {
-            PlayLevel(LevelDatabase.currentLevel + 1);
+            PlayLevel(LevelDatabase.GetCurrentBox().currentLevelId + 1);
         }
 
 #if UNITY_EDITOR

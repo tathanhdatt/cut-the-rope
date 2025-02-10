@@ -58,6 +58,8 @@ public class TransitionView : BaseView
 
     private async UniTask MoveCoversToCenter()
     {
+        this.leftCover.DOKill(true);
+        this.rightCover.DOKill(true);
         this.leftCover.DOLocalMove(this.startLeftCoverPosition, this.coverDuration)
             .SetEase(Ease.OutQuart);
         this.rightCover.DOLocalMove(this.startRightCoverPosition, this.coverDuration)
@@ -67,6 +69,8 @@ public class TransitionView : BaseView
 
     private async UniTask ReverseCovers()
     {
+        this.leftCover.DOKill(true);
+        this.rightCover.DOKill(true);
         this.leftCover.DOLocalMove(this.endLeftCoverPosition, this.coverDuration)
             .SetEase(Ease.OutQuart);
         this.rightCover.DOLocalMove(this.endRightCoverPosition, this.coverDuration)

@@ -26,9 +26,7 @@ public class HomeViewPresenter : BaseViewPresenter
 
     private async void OnClickPlayHandler()
     {
-        Messenger.Broadcast(Message.PlayLevel, 1);
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Show();
         await Hide();
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+        await GamePresenter.GetViewPresenter<LevelViewPresenter>().Show();
     }
 }
