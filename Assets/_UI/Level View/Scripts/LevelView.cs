@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Dt.Attribute;
@@ -25,9 +26,6 @@ public class LevelView : BaseView
     [SerializeField]
     private float snappingDuration;
 
-    [SerializeField]
-    private float velocity;
-
     [Title("Levels")]
     [SerializeField, Required]
     private GameObject levelContent;
@@ -37,6 +35,9 @@ public class LevelView : BaseView
 
     [SerializeField]
     private Sprite[] stars;
+
+    [SerializeField, ReadOnly]
+    private float rangePerBox;
 
     private Tweener snappingTweener;
 
@@ -50,17 +51,8 @@ public class LevelView : BaseView
         this.backButton.onClick.AddListener(() => OnClickBack?.Invoke());
     }
 
-    [SerializeField]
-    private Vector2 a;
-
-    private void Update()
-    {
-        this.a = this.boxScrollRect.normalizedPosition;
-    }
-
     private void OnValueChangedHandler(Vector2 pos)
     {
-        this.velocity = this.boxScrollRect.velocity.x;
         if (Mathf.Abs(this.boxScrollRect.velocity.x) > this.snappingVelocity)
         {
             this.snappingTweener?.Kill();
@@ -74,14 +66,12 @@ public class LevelView : BaseView
 
         pos = this.boxScrollRect.normalizedPosition;
         pos *= 100;
-        float rangePerBox = 100f / (this.boxScrollRect.content.childCount - 1);
-        Debug.Log(rangePerBox);
-        float remainder = pos.x % rangePerBox;
+        this.rangePerBox = 100f / (this.boxScrollRect.content.childCount - 1);
+        float remainder = pos.x % this.rangePerBox;
         pos.x -= remainder;
-        Debug.Log("pos"+pos.x);
-        if (remainder >= rangePerBox / 2)
+        if (remainder >= this.rangePerBox / 2)
         {
-            remainder = rangePerBox;
+            remainder = this.rangePerBox;
         }
         else
         {
@@ -145,5 +135,13 @@ public class LevelView : BaseView
     public void SetActionBoxScrollRect(bool isActive)
     {
         this.boxScrollRect.gameObject.SetActive(isActive);
+    }
+
+    public async UniTask ScrollToBox(int boxId)
+    {
+        this.snappingTweener = this.boxScrollRect
+            .DOHorizontalNormalizedPos(this.rangePerBox / 100 * boxId, 1.4f)
+            .SetEase(Ease.OutQuad);
+        await this.snappingTweener.AsyncWaitForCompletion();
     }
 }

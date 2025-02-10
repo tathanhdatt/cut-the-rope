@@ -28,9 +28,22 @@ public class WinViewPresenter : BaseViewPresenter
 
     private async void OnClickNextHandler()
     {
-        Messenger.Broadcast(Message.PlayNextLevel);
-        await Hide();
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+        if (this.levelDatabase.GetCurrentBox().IsCurrentLevelLastLevel())
+        {
+            await Hide();
+            this.levelDatabase.currentBoxId += 1;
+            this.levelDatabase.currentBoxId %= this.levelDatabase.boxes.Count;
+            await GamePresenter.GetViewPresenter<LevelViewPresenter>().Show();
+            await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+            await GamePresenter.GetViewPresenter<LevelViewPresenter>()
+                .ScrollToBox(this.levelDatabase.currentBoxId);
+        }
+        else
+        {
+            Messenger.Broadcast(Message.PlayNextLevel);
+            await Hide();
+            await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+        }
     }
 
     private void OnClickReplayHandler()

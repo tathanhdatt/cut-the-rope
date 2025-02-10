@@ -27,4 +27,9 @@ public class Chunk : MonoBehaviour, ICuttable
         await this.graphic.DOFade(0, 0.5f).AsyncWaitForCompletion();
         gameObject.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        this.graphic.DOKill();
+    }
 }

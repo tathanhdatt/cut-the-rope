@@ -39,4 +39,9 @@ public class BoxDatabase
     {
         this.stars[this.currentLevelId] = star;
     }
+
+    public bool IsCurrentLevelLastLevel()
+    {
+        return this.currentLevelId >= this.stars.Count - 1;
+    }
 }

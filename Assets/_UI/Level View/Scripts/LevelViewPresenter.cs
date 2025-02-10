@@ -91,4 +91,9 @@ public class LevelViewPresenter : BaseViewPresenter
             await GamePresenter.GetViewPresenter<HomeViewPresenter>().Show();
         }
     }
+
+    public async UniTask ScrollToBox(int boxId)
+    {
+        await this.view.ScrollToBox(boxId);
+    }
 }
