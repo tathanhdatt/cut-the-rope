@@ -8,14 +8,20 @@ public class LevelDatabase
 
     public List<BoxDatabase> boxes = new List<BoxDatabase>();
 
-    private const string BoxPath = "Assets/_Level/";
-
-    public LevelDatabase()
+    public LevelDatabase(string data)
     {
-        int numBoxes = System.IO.Directory.GetDirectories(BoxPath).Length;
-        for (int i = 0; i < numBoxes; i++)
+        string[] splitData = data.Split(',');
+        for (int i = 0; i < splitData.Length; i++)
         {
-            BoxDatabase boxDatabase = new BoxDatabase(i);
+            if (!splitData[i].Contains("Box_")) continue;
+            int numberLevelsInBox = 0;
+            while (!splitData[i + numberLevelsInBox + 1].Contains("Box_"))
+            {
+                numberLevelsInBox++;
+                if (i + numberLevelsInBox + 1 >= splitData.Length) break;
+            }
+
+            BoxDatabase boxDatabase = new BoxDatabase(numberLevelsInBox);
             this.boxes.Add(boxDatabase);
         }
     }
@@ -34,5 +40,4 @@ public class LevelDatabase
     {
         return this.boxes[this.currentBoxId];
     }
-
 }

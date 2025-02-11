@@ -1,5 +1,7 @@
 ﻿using Dt.Attribute;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class RopeCreator : MonoBehaviour
@@ -65,7 +67,9 @@ public class RopeCreator : MonoBehaviour
         this.rope.AddChunk(lastChunk.GetComponent<Chunk>());
 
         LinkToBall(lastChunk);
+#if UNITY_EDITOR
         EditorUtility.SetDirty(gameObject);
+#endif
     }
 
     private void LinkToBall(Joint2D lastChunk)
@@ -87,7 +91,9 @@ public class RopeCreator : MonoBehaviour
             if (transform.GetChild(i) == this.root.transform) continue;
             if (transform.GetChild(i).GetComponent<Chunk>() != null)
             {
+#if UNITY_EDITOR
                 DestroyImmediate(transform.GetChild(i).gameObject);
+#endif
             }
         }
     }

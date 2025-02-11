@@ -7,15 +7,11 @@ public class BoxDatabase
     public int currentLevelId;
     public int levelTopId;
     public List<int> stars = new List<int>();
-    private const string LevelPath = "Assets/_Level/Box_";
 
-    public BoxDatabase(int id)
+    public BoxDatabase(int numberLevels)
     {
-        string[] levels =
-            System.IO.Directory.GetFiles($"{LevelPath}{id + 1}/");
-        foreach (string level in levels)
+        for(int i = 0; i < numberLevels; i++)
         {
-            if (level.EndsWith(".meta")) continue;
             this.stars.Add(0);
         }
     }

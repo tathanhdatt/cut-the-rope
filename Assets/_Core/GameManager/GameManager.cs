@@ -36,12 +36,19 @@ namespace Core.Game
             InitLevelDatabase();
         }
 
+        [Button]
+        private async void A()
+        {
+Debug.Log(Application.streamingAssetsPath);
+        }
+
         private void InitLevelDatabase()
         {
             string data = PlayerPrefs.GetString(PlayerPrefsId.LevelDatabase, string.Empty);
             if (data.IsNullOrEmpty())
             {
-                LevelDatabase = new LevelDatabase();
+                string defaultData = "Box_1,1,2,3,4,Box_2,1,2,3,4";
+                LevelDatabase = new LevelDatabase(defaultData);
             }
             else
             {
