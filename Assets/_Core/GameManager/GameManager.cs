@@ -41,7 +41,8 @@ namespace Core.Game
             string data = PlayerPrefs.GetString(PlayerPrefsId.LevelDatabase, string.Empty);
             if (data.IsNullOrEmpty())
             {
-                string defaultData = "Box_1,1,2,3,4,Box_2,1,2,3,4";
+                string defaultData =
+                    "Box_1,0\nLevel_1,\nLevel_2,\nLevel_3,\nLevel_4,\nBox_2,6\nLevel_1,\nLevel_2,\nLevel_3,\nLevel_4,";
                 LevelDatabase = new LevelDatabase(defaultData);
             }
             else
@@ -136,6 +137,7 @@ namespace Core.Game
 
         private async void LevelWinHandler()
         {
+            LevelDatabase.UpdateUnlockedBox();
             await this.presenter.GetViewPresenter<TransitionViewPresenter>().Show();
             await this.presenter.GetViewPresenter<GameplayViewPresenter>().Hide();
             await this.presenter.GetViewPresenter<WinViewPresenter>().Show();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class WinViewPresenter : BaseViewPresenter
 {
@@ -23,6 +24,7 @@ public class WinViewPresenter : BaseViewPresenter
         base.OnShow();
         this.view.OnClickNext += OnClickNextHandler;
         this.view.OnClickReplay += OnClickReplayHandler;
+        this.view.OnClickHome += OnClickHomeHandler;
     }
 
 
@@ -60,5 +62,14 @@ public class WinViewPresenter : BaseViewPresenter
         base.OnHide();
         this.view.OnClickNext -= OnClickNextHandler;
         this.view.OnClickReplay -= OnClickReplayHandler;
+        this.view.OnClickHome -= OnClickHomeHandler;
+    }
+
+    private async void OnClickHomeHandler()
+    {
+        Messenger.Broadcast(Message.ClearLevel);
+        await Hide();
+        Presenter.GetViewPresenter<HomeViewPresenter>().Show();
+        Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
     }
 }

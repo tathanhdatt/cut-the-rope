@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reverseTag: Ball
   normalGravity: -9.81
-  reversedGravity: 7.82
+  reversedGravity: 4
   isCompleted: 0
 --- !u!1 &8710229693716632351
 GameObject:
@@ -2073,6 +2073,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 847270531682518082}
     m_Modifications:
+    - target: {fileID: 673700852863683513, guid: 52faf158e3e6cef458aac5532d500077, type: 3}
+      propertyPath: reversedGravity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3790338820273889272, guid: 52faf158e3e6cef458aac5532d500077, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

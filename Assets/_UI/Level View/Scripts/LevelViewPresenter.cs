@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class LevelViewPresenter : BaseViewPresenter
@@ -12,12 +13,15 @@ public class LevelViewPresenter : BaseViewPresenter
         Transform transform, LevelDatabase levelDatabase) : base(presenter, transform)
     {
         this.levelDatabase = levelDatabase;
+        this.levelDatabase.OnUpdateBox += OnUpdateBoxHandler;
     }
 
     protected override void AddViews()
     {
         this.view = AddView<LevelView>();
         LoadBoxes();
+        this.levelDatabase.UpdateUnlockedBox();
+        this.view.SetTotalCollectedStar(this.levelDatabase.GetTotalStars());
     }
 
     private void LoadBoxes()
@@ -25,7 +29,9 @@ public class LevelViewPresenter : BaseViewPresenter
         for (int i = 0; i < this.levelDatabase.boxes.Count; i++)
         {
             Sprite sprite = Resources.Load<Sprite>($"BoxCovers/{i + 1}");
-            this.view.AddBox(i, sprite);
+            int starToUnlock = this.levelDatabase.boxes[i].starToUnlocked;
+            this.view.AddBox(i, sprite, starToUnlock);
+            this.view.AddFooterDot();
         }
     }
 
@@ -35,6 +41,15 @@ public class LevelViewPresenter : BaseViewPresenter
         this.view.OnSelectedBox += OnSelectedBoxHandler;
         this.view.OnClickBack += OnClickBackHandler;
         this.isOpenedLevel = false;
+    }
+
+    private void OnUpdateBoxHandler()
+    {
+        for (int i = 0; i < this.levelDatabase.boxes.Count; i++)
+        {
+            this.view.UpdateBox(i, this.levelDatabase.IsBoxUnlocked(i));
+        }
+        this.view.SetTotalCollectedStar(this.levelDatabase.GetTotalStars());
     }
 
     protected override void OnHide()
@@ -47,10 +62,12 @@ public class LevelViewPresenter : BaseViewPresenter
 
     private async void OnSelectedBoxHandler(int boxId)
     {
+        if (!this.levelDatabase.IsBoxUnlocked(boxId)) return;
         this.isOpenedLevel = true;
         await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
         this.levelDatabase.currentBoxId = boxId;
         this.view.SetActionBoxScrollRect(false);
+        this.view.SetActiveFooter(false);
         BoxDatabase boxDatabase = this.levelDatabase.boxes[boxId];
 
         for (int i = 0; i < boxDatabase.stars.Count; i++)
@@ -82,6 +99,7 @@ public class LevelViewPresenter : BaseViewPresenter
             await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
             this.view.HideAllLevels();
             this.view.SetActionBoxScrollRect(true);
+            this.view.SetActiveFooter(true);
             this.isOpenedLevel = false;
             await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
         }
@@ -96,4 +114,5 @@ public class LevelViewPresenter : BaseViewPresenter
     {
         await this.view.ScrollToBox(boxId);
     }
+
 }

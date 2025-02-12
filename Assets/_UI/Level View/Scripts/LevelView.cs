@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Dt.Attribute;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,10 @@ public class LevelView : BaseView
     [SerializeField]
     private float snappingDuration;
 
+    [Line]
+    [SerializeField, Required]
+    private TMP_Text totalCollectedStar;
+
     [Title("Levels")]
     [SerializeField, Required]
     private GameObject levelContent;
@@ -39,7 +44,19 @@ public class LevelView : BaseView
     [SerializeField, ReadOnly]
     private float rangePerBox;
 
+    [Title("Footer")]
+    [SerializeField, Required]
+    private IndicatorFillBar footer;
+
+    [SerializeField, Required]
+    private GameObject dotPrefab;
+
+    [SerializeField, Required]
+    private Transform footerContent;
+
     private Tweener snappingTweener;
+
+    private readonly List<BoxUI> boxes = new List<BoxUI>(2);
 
     public event Action<int> OnSelectedBox;
     public event Action OnClickBack;
@@ -53,6 +70,7 @@ public class LevelView : BaseView
 
     private void OnValueChangedHandler(Vector2 pos)
     {
+        this.footer.SetIndicator(this.boxScrollRect.horizontalNormalizedPosition);
         if (Mathf.Abs(this.boxScrollRect.velocity.x) > this.snappingVelocity)
         {
             this.snappingTweener?.Kill();
@@ -88,8 +106,10 @@ public class LevelView : BaseView
     public override async UniTask Show()
     {
         SetActionBoxScrollRect(true);
+        SetActiveFooter(true);
         HideAllLevels();
         this.boxScrollRect.horizontalNormalizedPosition = 0;
+        this.footer.SetIndicator(0);
         await base.Show();
         await FadeOut();
     }
@@ -100,11 +120,17 @@ public class LevelView : BaseView
             .SetEase(Ease.OutQuad).AsyncWaitForCompletion();
     }
 
-    public void AddBox(int id, Sprite coverSprite)
+    public void AddBox(int id, Sprite coverSprite, int starToUnlock)
     {
         BoxUI box = Instantiate(this.boxPrefab, this.boxScrollRect.content);
-        box.Initialize(id, coverSprite);
+        box.Initialize(id, coverSprite, starToUnlock);
         box.OnClicked += OnClickedBoxHandler;
+        this.boxes.Add(box);
+    }
+
+    public void AddFooterDot()
+    {
+        Instantiate(this.dotPrefab, this.footerContent);
     }
 
     private void OnClickedBoxHandler(int boxId)
@@ -143,5 +169,20 @@ public class LevelView : BaseView
             .DOHorizontalNormalizedPos(this.rangePerBox / 100 * boxId, 1.4f)
             .SetEase(Ease.OutQuad);
         await this.snappingTweener.AsyncWaitForCompletion();
+    }
+
+    public void UpdateBox(int boxId, bool isUnlocked)
+    {
+        this.boxes[boxId].UpdateStatus(isUnlocked);
+    }
+
+    public void SetTotalCollectedStar(int star)
+    {
+        this.totalCollectedStar.SetText(star.ToString());
+    }
+
+    public void SetActiveFooter(bool active)
+    {
+        this.footer.gameObject.SetActive(active);
     }
 }

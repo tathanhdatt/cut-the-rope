@@ -17,17 +17,22 @@ public class WinView : BaseView
     [SerializeField, Required]
     private Button replayButton;
 
+    [SerializeField, Required]
+    private Button homeButton;
+
     [SerializeField]
     private GameObject[] stars;
 
     public event Action OnClickNext;
     public event Action OnClickReplay;
+    public event Action OnClickHome;
 
     public override async UniTask Initialize()
     {
         await base.Initialize();
         this.nextButton.onClick.AddListener(() => OnClickNext?.Invoke());
         this.replayButton.onClick.AddListener(() => OnClickReplay?.Invoke());
+        this.homeButton.onClick.AddListener(() => OnClickHome?.Invoke());
     }
 
     public override async UniTask Show()
