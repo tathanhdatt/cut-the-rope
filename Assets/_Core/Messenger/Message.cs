@@ -7,4 +7,5 @@
     public const string CollectStar = "Collect star";
     public const string Replay = "Replay";
     public const string ClearLevel = "Clear level";
+    public const string Popup = "Popup";
 }

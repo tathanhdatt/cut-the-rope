@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.Extension;
@@ -67,6 +68,7 @@ namespace Core.Game
             Messenger.AddListener(Message.PlayNextLevel, PlayNextLevel);
             Messenger.AddListener(Message.Replay, ReplayHandler);
             Messenger.AddListener(Message.ClearLevel, ClearLevelHandler);
+            Messenger.AddListener<string>(Message.Popup, PopupHandler);
             await this.presenter.GetViewPresenter<LoadingViewPresenter>().Show();
             await this.presenter.GetViewPresenter<HomeViewPresenter>().Show();
             await this.presenter.GetViewPresenter<LoadingViewPresenter>().Hide();
@@ -152,6 +154,20 @@ namespace Core.Game
         private void PlayNextLevel()
         {
             PlayLevel(LevelDatabase.GetCurrentBox().currentLevelId + 1);
+        }
+
+        private void PopupHandler(string content)
+        {
+            if (!this.dialogManager.TryGetDialog(out PopupDialog dialog)) return;
+            dialog.SetContent(content);
+            dialog.Show();
+            dialog.OnHide += OnPopupDialogHideHandler;
+        }
+
+        private void OnPopupDialogHideHandler(Dialog dialog)
+        {
+            dialog.OnHide -= OnPopupDialogHideHandler;
+            this.dialogManager.AddDialog(dialog as PopupDialog);
         }
 
 #if UNITY_EDITOR

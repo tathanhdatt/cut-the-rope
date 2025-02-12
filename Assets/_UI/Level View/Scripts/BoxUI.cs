@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Dt.Attribute;
 using TMPro;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class BoxUI : MonoBehaviour
 
     [SerializeField, Required]
     private GameObject mask;
-    
+
     [SerializeField, Required]
     private TMP_Text starToUnlock;
 
@@ -32,7 +33,7 @@ public class BoxUI : MonoBehaviour
     public void Initialize(int id, Sprite cover, int starToUnlock)
     {
         this.id = id;
-        this.selectButton.onClick.AddListener(() => OnClicked?.Invoke(this.id));
+        this.selectButton.onClick.AddListener(OnClickHandler);
         this.leftCover.sprite = cover;
         this.rightCover.sprite = cover;
         this.starToUnlock.SetText(starToUnlock.ToString());
@@ -42,5 +43,10 @@ public class BoxUI : MonoBehaviour
     {
         this.lockObject.SetActive(!isUnlocked);
         this.mask.SetActive(isUnlocked);
+    }
+
+    private void OnClickHandler()
+    {
+        OnClicked?.Invoke(this.id);
     }
 }
