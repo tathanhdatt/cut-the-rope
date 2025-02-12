@@ -8,8 +8,8 @@ public class LevelViewPresenter : BaseViewPresenter
 
     private bool isOpenedLevel = false;
 
-    public LevelViewPresenter(GamePresenter gamePresenter,
-        Transform transform, LevelDatabase levelDatabase) : base(gamePresenter, transform)
+    public LevelViewPresenter(GamePresenter presenter,
+        Transform transform, LevelDatabase levelDatabase) : base(presenter, transform)
     {
         this.levelDatabase = levelDatabase;
     }
@@ -48,7 +48,7 @@ public class LevelViewPresenter : BaseViewPresenter
     private async void OnSelectedBoxHandler(int boxId)
     {
         this.isOpenedLevel = true;
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Show();
+        await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
         this.levelDatabase.currentBoxId = boxId;
         this.view.SetActionBoxScrollRect(false);
         BoxDatabase boxDatabase = this.levelDatabase.boxes[boxId];
@@ -62,33 +62,33 @@ public class LevelViewPresenter : BaseViewPresenter
         }
 
         this.view.SetActiveLevelContent(true);
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+        await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
     }
 
     private async void OnClickPlayHandler(int levelId)
     {
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Show();
+        await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
         await Hide();
         Messenger.Broadcast(Message.PlayLevel, levelId);
         await UniTask.WaitForSeconds(0.2f);
-        await GamePresenter.GetViewPresenter<GameplayViewPresenter>().Show();
-        await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+        await Presenter.GetViewPresenter<GameplayViewPresenter>().Show();
+        await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
     }
 
     private async void OnClickBackHandler()
     {
         if (this.isOpenedLevel)
         {
-            await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Show();
+            await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
             this.view.HideAllLevels();
             this.view.SetActionBoxScrollRect(true);
             this.isOpenedLevel = false;
-            await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+            await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
         }
         else
         {
             await Hide();
-            await GamePresenter.GetViewPresenter<HomeViewPresenter>().Show();
+            await Presenter.GetViewPresenter<HomeViewPresenter>().Show();
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.Extension;
 using UnityEngine;
@@ -21,16 +23,33 @@ public class BallTarget : MonoBehaviour
     [SerializeField]
     private float delayDestroyBall;
 
+    private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+
     private async void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(this.ballTag))
         {
-            this.animator.Play(this.biteAnim);
-            await UniTask.WaitForSeconds(this.delayDestroyBall);
-            Destroy(other.gameObject);
-            await UniTask.WaitForSeconds(this.delay);
-            Messenger.Broadcast(Message.LevelWin);
+            try
+            {
+                this.animator.Play(this.biteAnim);
+                await UniTask.WaitForSeconds(this.delayDestroyBall,
+                    cancellationToken: this.cancellationTokenSource.Token);
+                if (other == null) return;
+                Destroy(other.gameObject);
+                await UniTask.WaitForSeconds(this.delay,
+                    cancellationToken: this.cancellationTokenSource.Token);
+                Messenger.Broadcast(Message.LevelWin);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
+    }
+
+    private void OnDestroy()
+    {
+        this.cancellationTokenSource.Cancel();
     }
 
 #if UNITY_EDITOR

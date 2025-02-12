@@ -36,12 +36,6 @@ namespace Core.Game
             InitLevelDatabase();
         }
 
-        [Button]
-        private async void A()
-        {
-Debug.Log(Application.streamingAssetsPath);
-        }
-
         private void InitLevelDatabase()
         {
             string data = PlayerPrefs.GetString(PlayerPrefsId.LevelDatabase, string.Empty);
@@ -82,11 +76,9 @@ Debug.Log(Application.streamingAssetsPath);
             ClearLevel();
         }
 
-        private async void ReplayHandler()
+        private void ReplayHandler()
         {
-            await this.presenter.GetViewPresenter<WinViewPresenter>().Hide();
             PlayLevel(LevelDatabase.GetCurrentBox().currentLevelId);
-            await this.presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
         }
 
         private void CollectStarHandler()
@@ -145,13 +137,14 @@ Debug.Log(Application.streamingAssetsPath);
         private async void LevelWinHandler()
         {
             await this.presenter.GetViewPresenter<TransitionViewPresenter>().Show();
+            await this.presenter.GetViewPresenter<GameplayViewPresenter>().Hide();
             await this.presenter.GetViewPresenter<WinViewPresenter>().Show();
             UpdateLevelTop();
         }
 
         private void UpdateLevelTop()
         {
-            LevelDatabase.GetCurrentBox().levelTopId += 1;
+            LevelDatabase.GetCurrentBox().UpdateLevelTop();
         }
 
         private void PlayNextLevel()

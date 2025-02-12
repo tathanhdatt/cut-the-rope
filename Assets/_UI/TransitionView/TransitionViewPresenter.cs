@@ -3,7 +3,7 @@
 public class TransitionViewPresenter : BaseViewPresenter
 {
     private TransitionView view;
-    public TransitionViewPresenter(GamePresenter gamePresenter, Transform transform) : base(gamePresenter, transform)
+    public TransitionViewPresenter(GamePresenter presenter, Transform transform) : base(presenter, transform)
     {
     }
 

@@ -5,8 +5,8 @@ public class WinViewPresenter : BaseViewPresenter
     private WinView view;
     private LevelDatabase levelDatabase;
 
-    public WinViewPresenter(GamePresenter gamePresenter,
-        Transform transform, LevelDatabase levelDatabase) : base(gamePresenter, transform)
+    public WinViewPresenter(GamePresenter presenter,
+        Transform transform, LevelDatabase levelDatabase) : base(presenter, transform)
     {
         this.levelDatabase = levelDatabase;
     }
@@ -33,22 +33,26 @@ public class WinViewPresenter : BaseViewPresenter
             await Hide();
             this.levelDatabase.currentBoxId += 1;
             this.levelDatabase.currentBoxId %= this.levelDatabase.boxes.Count;
-            await GamePresenter.GetViewPresenter<LevelViewPresenter>().Show();
-            await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
-            await GamePresenter.GetViewPresenter<LevelViewPresenter>()
+            await Presenter.GetViewPresenter<LevelViewPresenter>().Show();
+            await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+            await Presenter.GetViewPresenter<LevelViewPresenter>()
                 .ScrollToBox(this.levelDatabase.currentBoxId);
         }
         else
         {
+            await Presenter.GetViewPresenter<GameplayViewPresenter>().Show();
             Messenger.Broadcast(Message.PlayNextLevel);
             await Hide();
-            await GamePresenter.GetViewPresenter<TransitionViewPresenter>().Hide();
+            await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
         }
     }
 
-    private void OnClickReplayHandler()
+    private async void OnClickReplayHandler()
     {
         Messenger.Broadcast(Message.Replay);
+        Presenter.GetViewPresenter<GameplayViewPresenter>().Show();
+        await Hide();
+        await Presenter.GetViewPresenter<TransitionViewPresenter>().Hide();
     }
 
     protected override void OnHide()

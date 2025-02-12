@@ -47,6 +47,7 @@ public class RopeCutter : VisualNode, ILeafNode
 
     private void OnFingerDownHandler(LeanFinger finger)
     {
+        if (finger.IsOverGui) return;
         this.lastWorldPosition = finger.GetWorldPosition(10);
         this.worldPosition = finger.GetWorldPosition(10);
         this.graphic.position = this.worldPosition;

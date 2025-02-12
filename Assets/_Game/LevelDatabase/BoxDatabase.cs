@@ -40,4 +40,12 @@ public class BoxDatabase
     {
         return this.currentLevelId >= this.stars.Count - 1;
     }
+
+    public void UpdateLevelTop()
+    {
+        if (this.currentLevelId + 1 > this.levelTopId)
+        {
+            this.levelTopId = this.currentLevelId + 1;
+        }
+    }
 }

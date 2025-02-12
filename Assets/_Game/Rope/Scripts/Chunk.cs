@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using DG.Tweening;
 using Dt.Attribute;
 using UnityEngine;
@@ -24,8 +26,16 @@ public class Chunk : MonoBehaviour, ICuttable
 
     public async void FadeGraphic()
     {
-        await this.graphic.DOFade(0, 0.5f).AsyncWaitForCompletion();
-        gameObject.SetActive(false);
+        try
+        {
+            await this.graphic.DOFade(0, 0.5f).AsyncWaitForCompletion();
+            if (gameObject == null) return;
+            gameObject.SetActive(false);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
     }
 
     private void OnDestroy()

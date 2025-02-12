@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Dt.Attribute;
 using UnityEngine;
@@ -42,9 +41,14 @@ public class TransitionView : BaseView
     [SerializeField]
     private float knifeDuration;
 
+    [Line]
+    [SerializeField, Required]
+    private GameObject preventClickOverObject;
+
     public override async UniTask Show()
     {
         ResetPosition();
+        this.preventClickOverObject.SetActive(true);
         await base.Show();
         await MoveCoversToCenter();
     }
@@ -61,10 +65,10 @@ public class TransitionView : BaseView
         this.leftCover.DOKill(true);
         this.rightCover.DOKill(true);
         this.leftCover.DOLocalMove(this.startLeftCoverPosition, this.coverDuration)
-            .SetEase(Ease.OutQuart);
+            .SetEase(Ease.OutQuart).SetUpdate(true);
         this.rightCover.DOLocalMove(this.startRightCoverPosition, this.coverDuration)
-            .SetEase(Ease.OutQuart);
-        await UniTask.WaitForSeconds(this.coverDuration);
+            .SetEase(Ease.OutQuart).SetUpdate(true);
+        await UniTask.WaitForSeconds(this.coverDuration, true);
     }
 
     private async UniTask ReverseCovers()
@@ -72,10 +76,11 @@ public class TransitionView : BaseView
         this.leftCover.DOKill(true);
         this.rightCover.DOKill(true);
         this.leftCover.DOLocalMove(this.endLeftCoverPosition, this.coverDuration)
-            .SetEase(Ease.OutQuart);
+            .SetEase(Ease.OutQuart).SetUpdate(true);
         this.rightCover.DOLocalMove(this.endRightCoverPosition, this.coverDuration)
-            .SetEase(Ease.OutQuart);
-        await UniTask.WaitForSeconds(this.coverDuration);
+            .SetEase(Ease.OutQuart).SetUpdate(true);
+        this.preventClickOverObject.SetActive(false);
+        await UniTask.WaitForSeconds(this.coverDuration, true);
     }
 
     public override async UniTask Hide()

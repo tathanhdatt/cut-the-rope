@@ -4,8 +4,8 @@ public class LoadingViewPresenter : BaseViewPresenter
 {
     private LoadingView view;
 
-    public LoadingViewPresenter(GamePresenter gamePresenter, Transform transform) : base(
-        gamePresenter, transform)
+    public LoadingViewPresenter(GamePresenter presenter, Transform transform) : base(
+        presenter, transform)
     {
     }
 

@@ -5,13 +5,13 @@ using UnityEngine;
 public abstract class BaseViewPresenter
 {
     private readonly List<BaseView> views = new List<BaseView>(4);
-    protected GamePresenter GamePresenter { get; private set; }
+    protected GamePresenter Presenter { get; private set; }
     public Transform Transform { get; private set; }
     public bool IsShowing { get; private set; }
 
-    protected BaseViewPresenter(GamePresenter gamePresenter, Transform transform)
+    protected BaseViewPresenter(GamePresenter presenter, Transform transform)
     {
-        GamePresenter = gamePresenter;
+        Presenter = presenter;
         Transform = transform;
     }
 

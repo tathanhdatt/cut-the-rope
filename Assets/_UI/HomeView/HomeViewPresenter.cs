@@ -3,7 +3,7 @@
 public class HomeViewPresenter : BaseViewPresenter
 {
     private HomeView view;
-    public HomeViewPresenter(GamePresenter gamePresenter, Transform transform) : base(gamePresenter, transform)
+    public HomeViewPresenter(GamePresenter presenter, Transform transform) : base(presenter, transform)
     {
     }
 
@@ -27,6 +27,6 @@ public class HomeViewPresenter : BaseViewPresenter
     private async void OnClickPlayHandler()
     {
         await Hide();
-        await GamePresenter.GetViewPresenter<LevelViewPresenter>().Show();
+        await Presenter.GetViewPresenter<LevelViewPresenter>().Show();
     }
 }
