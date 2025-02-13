@@ -45,6 +45,7 @@ public class InterstitialAdmobAdapter : IInterstitialAdapter
     private void OnClosedAdsHandler()
     {
         OnClosed?.Invoke();
+        Load();
     }
 
     public void Show()

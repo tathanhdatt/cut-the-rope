@@ -1,0 +1,23 @@
+# ninja log v5
+5	4515	7611305110749450	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f0d7a967799e2e6
+121	1241	7611305077926527	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	4a8df06c4fcf2d52
+1244	2486	7611305090069852	D:/1/Code/Game/Cut the rope/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/3u4y1d67/obj/arm64-v8a/libswappywrapper.so	5d8545f21131b5f8
+32	4068	7611305106343160	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	fec5f22b3a9294ce
+98	3894	7611305104422379	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f0b96f3ca334a53c
+72	4032	7611305105794376	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	e5204fa987c4dc9c
+107	4136	7611305106999312	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4ff5073736a74eb4
+19	4130	7611305106882805	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	18de9f919e4ba5ef
+59	4271	7611305108370965	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	fd50bd74f0a5fe31
+49	4491	7611305110548864	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	d770abedd784d9ee
+4515	4836	7611305113691437	D:/1/Code/Game/Cut the rope/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/3u4y1d67/obj/arm64-v8a/libgame.so	382ceb68194bc08d
+61	291	7611330674705466	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	4a8df06c4fcf2d52
+292	633	7611330678000555	D:/1/Code/Game/Cut the rope/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/3u4y1d67/obj/arm64-v8a/libswappywrapper.so	5d8545f21131b5f8
+33	1106	7611330682809644	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	e5204fa987c4dc9c
+27	1121	7611330682942306	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	18de9f919e4ba5ef
+9	1134	7611330683061334	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	d770abedd784d9ee
+46	1150	7611330683212872	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f0b96f3ca334a53c
+53	1158	7611330683293310	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4ff5073736a74eb4
+15	1194	7611330683690904	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	fec5f22b3a9294ce
+39	1271	7611330684477075	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	fd50bd74f0a5fe31
+21	1337	7611330685099581	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f0d7a967799e2e6
+1337	1448	7611330686140329	D:/1/Code/Game/Cut the rope/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/3u4y1d67/obj/arm64-v8a/libgame.so	382ceb68194bc08d

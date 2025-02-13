@@ -1,9 +1,13 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using GoogleMobileAds.Api;
+using UnityEngine;
 
 public class BannerAdmobAdapter : IBannerAdapter
 {
-    private readonly BannerView bannerView;
+    private BannerView bannerView;
+    private readonly string adUnitId;
+    private readonly AdPosition adPosition;
     public event Action OnLoadSucceeded;
     public event Action OnLoadFailed;
     public event Action OnClosed;
@@ -12,7 +16,14 @@ public class BannerAdmobAdapter : IBannerAdapter
 
     public BannerAdmobAdapter(string adUnitId, AdPosition position)
     {
-        this.bannerView = new BannerView(adUnitId, AdSize.Banner, position);
+        this.adUnitId = adUnitId;
+        this.adPosition = position;
+    }
+
+    private void CreateBannerView()
+    {
+        this.bannerView?.Destroy();
+        this.bannerView = new BannerView(this.adUnitId, AdSize.Banner, this.adPosition);
         this.bannerView.OnBannerAdLoaded += OnLoadedHandler;
         this.bannerView.OnBannerAdLoadFailed += OnLoadFailedHandler;
         this.bannerView.OnAdClicked += OnClickedHandler;
@@ -21,7 +32,8 @@ public class BannerAdmobAdapter : IBannerAdapter
     private void OnLoadedHandler()
     {
         OnLoadSucceeded?.Invoke();
-        this.bannerView.Hide();
+        OnOpened?.Invoke();
+        this.bannerView?.Hide();
     }
 
     private void OnLoadFailedHandler(LoadAdError error)
@@ -36,18 +48,18 @@ public class BannerAdmobAdapter : IBannerAdapter
 
     public void Load()
     {
+        CreateBannerView();
         this.bannerView.LoadAd(new AdRequest());
     }
 
     public void Show()
     {
-        this.bannerView.Show();
-        OnOpened?.Invoke();
+        this.bannerView?.Show();
     }
 
     public void Hide()
     {
-        this.bannerView.Hide();
+        this.bannerView?.Hide();
         OnClosed?.Invoke();
     }
 }

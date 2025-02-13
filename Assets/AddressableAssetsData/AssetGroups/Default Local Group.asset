@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: de2afc53d91df0244be7237589226b09
   m_SerializeEntries:
+  - m_GUID: 064ae2e7ef2e1fc4aa8d4021e0b0af5a
+    m_Address: Assets/_Level/Box_1/Level_003.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 098ac8aeddd5ceb4fa3fb1a647e64b08
     m_Address: Assets/_Level/Box_2/Level_003.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca599976e4248d42bd554f8166f333c
+    m_Address: Assets/_Level/Box_1/Level_005.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -46,7 +56,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7455152f041bf394ca2f250810786fef
-    m_Address: Assets/_Level/Box_1/Level_003.prefab
+    m_Address: Assets/_Level/Box_1/Level_006.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

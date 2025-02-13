@@ -47,7 +47,7 @@ namespace Core.Game
             if (data.IsNullOrEmpty())
             {
                 string defaultData =
-                    "Box_1,0\nLevel_1,\nLevel_2,\nLevel_3,\nLevel_4,\nBox_2,6\nLevel_1,\nLevel_2,\nLevel_3,\nLevel_4,";
+                    "Box_1,0\nLevel_1,\nLevel_2,\nLevel_3,\nLevel_4,\nLevel_5,\nLevel_6,\nLevel_7,\nBox_2,6\nLevel_1,\nLevel_2,\nLevel_3,\nLevel_4,";
                 LevelDatabase = new LevelDatabase(defaultData);
             }
             else
@@ -62,12 +62,16 @@ namespace Core.Game
             await AdsAdapter.Initialize();
 
             AdsAdapter.SetBannerAdapter(
-                new BannerAdmobAdapter("ca-app-pub-3940256099942544/6300978111",
-                    AdPosition.Bottom));
+                new BannerAutoLoadOnFailed(
+                    new BannerAdmobAdapter("ca-app-pub-3940256099942544/6300978111",
+                        AdPosition.Bottom)));
             AdsAdapter.BannerAdapter.Load();
 
             AdsAdapter.SetInterstitialAdapter(
-                new InterstitialAdmobAdapter("ca-app-pub-3940256099942544/1033173712"));
+                new InterstitialAutoLoadOnFailed(
+                    new InterstitialAdmobAdapter("ca-app-pub-3940256099942544/1033173712")
+                )
+            );
             AdsAdapter.InterstitialAdapter.Load();
         }
 
