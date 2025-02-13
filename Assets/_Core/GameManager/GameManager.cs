@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using Core.AudioService;
 using Core.Service;
 using Cysharp.Threading.Tasks;
@@ -31,14 +32,15 @@ namespace Core.Game
 
         private void Awake()
         {
+            // Initialize();
         }
 
-        private void Initialize()
+        private async UniTask Initialize()
         {
             Application.targetFrameRate = 60;
             InitLevelDatabase();
-            InitAdsAdapter();
             InitAudioService();
+            await InitAdsAdapter();
         }
 
         private void InitAudioService()
@@ -62,7 +64,7 @@ namespace Core.Game
             }
         }
 
-        private async void InitAdsAdapter()
+        private async UniTask InitAdsAdapter()
         {
             AdsAdapter = new AdmobAdapter();
             await AdsAdapter.Initialize();
@@ -84,14 +86,18 @@ namespace Core.Game
 
         private async void Start()
         {
-            Initialize();
             this.presenter.Enter(this);
-            await this.presenter.InitialViewPresenters();
+            LoadingViewPresenter loadingViewPresenter = 
+                new LoadingViewPresenter(this.presenter, this.presenter.transform);
+            this.presenter.AddPresenter(loadingViewPresenter);
             await OnEnter();
         }
 
         private async UniTask OnEnter()
         {
+            await this.presenter.GetViewPresenter<LoadingViewPresenter>().Show();
+            await this.presenter.GetViewPresenter<LoadingViewPresenter>()
+                .Load(Initialize(), this.presenter.InitialViewPresenters());
             Messenger.AddListener(Message.LevelWin, LevelWinHandler);
             Messenger.AddListener(Message.LevelLose, LevelLoseHandler);
             Messenger.AddListener(Message.CollectStar, CollectStarHandler);
@@ -100,7 +106,6 @@ namespace Core.Game
             Messenger.AddListener(Message.Replay, ReplayHandler);
             Messenger.AddListener(Message.ClearLevel, ClearLevelHandler);
             Messenger.AddListener<string>(Message.Popup, PopupHandler);
-            await this.presenter.GetViewPresenter<LoadingViewPresenter>().Show();
             await this.presenter.GetViewPresenter<HomeViewPresenter>().Show();
             await this.presenter.GetViewPresenter<LoadingViewPresenter>().Hide();
         }

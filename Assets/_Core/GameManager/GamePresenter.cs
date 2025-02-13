@@ -18,8 +18,6 @@ public class GamePresenter : MonoBehaviour
 
     private void AddPresenters()
     {
-        LoadingViewPresenter loadingViewPresenter = new LoadingViewPresenter(this, transform);
-        AddPresenter(loadingViewPresenter);
         HomeViewPresenter homeViewPresenter = new HomeViewPresenter(this, transform);
         AddPresenter(homeViewPresenter);
         TransitionViewPresenter transitionViewPresenter =
@@ -45,7 +43,7 @@ public class GamePresenter : MonoBehaviour
         }
     }
 
-    private void AddPresenter(BaseViewPresenter presenter)
+    public void AddPresenter(BaseViewPresenter presenter)
     {
         this.presenters.Add(presenter.GetType(), presenter);
     }

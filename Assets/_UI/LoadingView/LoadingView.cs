@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Dt.Attribute;
 using UnityEngine;
@@ -12,12 +13,13 @@ public class LoadingView : BaseView
     [SerializeField, Required]
     private Image fadeBg;
 
-    public override async UniTask Show()
+    public async UniTask Load(UniTask initManagerTask, UniTask initPresenterTask)
     {
-        await base.Show();
         await this.loadingBar.FillTo(0.3f, 0.8f);
-        await UniTask.WaitForSeconds(0.4f);
-        await this.loadingBar.FillTo(1f, 0.6f);
+        await UniTask.WhenAny(initManagerTask);
+        await this.loadingBar.FillTo(0.8f, 0.6f);
+        await UniTask.WhenAny(initPresenterTask);
+        await this.loadingBar.FillTo(1f, 0.4f);
         await Hide();
     }
 

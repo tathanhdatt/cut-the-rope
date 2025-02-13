@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class LoadingViewPresenter : BaseViewPresenter
 {
@@ -12,5 +14,10 @@ public class LoadingViewPresenter : BaseViewPresenter
     protected override void AddViews()
     {
         this.view = AddView<LoadingView>();
+    }
+
+    public async UniTask Load(UniTask initManagerTask, UniTask initPresenterTask)
+    {
+        await this.view.Load(initManagerTask, initPresenterTask);
     }
 }

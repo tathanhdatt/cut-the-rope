@@ -22,7 +22,14 @@ public class BannerAdmobAdapter : IBannerAdapter
 
     private void CreateBannerView()
     {
-        this.bannerView?.Destroy();
+        if (this.bannerView != null)
+        {
+            this.bannerView.OnBannerAdLoaded -= OnLoadedHandler;
+            this.bannerView.OnBannerAdLoadFailed -= OnLoadFailedHandler;
+            this.bannerView.OnAdClicked -= OnClickedHandler;
+            this.bannerView.Destroy();
+        }
+
         this.bannerView = new BannerView(this.adUnitId, AdSize.Banner, this.adPosition);
         this.bannerView.OnBannerAdLoaded += OnLoadedHandler;
         this.bannerView.OnBannerAdLoadFailed += OnLoadFailedHandler;
@@ -32,7 +39,6 @@ public class BannerAdmobAdapter : IBannerAdapter
     private void OnLoadedHandler()
     {
         OnLoadSucceeded?.Invoke();
-        OnOpened?.Invoke();
         this.bannerView?.Hide();
     }
 
@@ -54,6 +60,7 @@ public class BannerAdmobAdapter : IBannerAdapter
 
     public void Show()
     {
+        OnOpened?.Invoke();
         this.bannerView?.Show();
     }
 
