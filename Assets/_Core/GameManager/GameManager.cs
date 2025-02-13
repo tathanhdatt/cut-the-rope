@@ -31,7 +31,6 @@ namespace Core.Game
 
         private void Awake()
         {
-            Initialize();
         }
 
         private void Initialize()
@@ -85,6 +84,7 @@ namespace Core.Game
 
         private async void Start()
         {
+            Initialize();
             this.presenter.Enter(this);
             await this.presenter.InitialViewPresenters();
             await OnEnter();
