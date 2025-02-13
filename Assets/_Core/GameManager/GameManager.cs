@@ -3,6 +3,7 @@ using System.Text;
 using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.Extension;
+using GoogleMobileAds.Api;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -25,6 +26,7 @@ namespace Core.Game
         private int collectedStar;
 
         public LevelDatabase LevelDatabase { get; private set; }
+        public IAdsAdapter AdsAdapter { get; private set; }
 
         private void Awake()
         {
@@ -35,7 +37,9 @@ namespace Core.Game
         {
             Application.targetFrameRate = 60;
             InitLevelDatabase();
+            InitAdsAdapter();
         }
+
 
         private void InitLevelDatabase()
         {
@@ -51,6 +55,22 @@ namespace Core.Game
                 LevelDatabase = JsonUtility.FromJson<LevelDatabase>(data);
             }
         }
+
+        private async void InitAdsAdapter()
+        {
+            AdsAdapter = new AdmobAdapter();
+            await AdsAdapter.Initialize();
+
+            AdsAdapter.SetBannerAdapter(
+                new BannerAdmobAdapter("ca-app-pub-3940256099942544/6300978111",
+                    AdPosition.Bottom));
+            AdsAdapter.BannerAdapter.Load();
+
+            AdsAdapter.SetInterstitialAdapter(
+                new InterstitialAdmobAdapter("ca-app-pub-3940256099942544/1033173712"));
+            AdsAdapter.InterstitialAdapter.Load();
+        }
+
 
         private async void Start()
         {

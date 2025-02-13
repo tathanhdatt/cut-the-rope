@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.coffee.softmask-for-ugui": {
-      "version": "https://github.com/mob-sakai/SoftMaskForUGUI.git?path=Packages/src",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      },
-      "hash": "02cf05485ac0bbd9f61e7b829dd6526db7c9dba5"
-    },
     "com.cysharp.unitask": {
       "version": "file:D:/1/Assets/_myunitypackages/UniTask",
       "depth": 0,
@@ -34,6 +25,23 @@
       "depth": 0,
       "source": "local",
       "dependencies": {}
+    },
+    "com.google.ads.mobile": {
+      "version": "9.5.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.183",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.google.external-dependency-manager": {
+      "version": "1.2.183",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
     },
     "com.unity.2d.animation": {
       "version": "10.1.4",

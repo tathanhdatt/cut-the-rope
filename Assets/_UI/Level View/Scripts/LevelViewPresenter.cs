@@ -5,14 +5,16 @@ public class LevelViewPresenter : BaseViewPresenter
 {
     private LevelView view;
     private readonly LevelDatabase levelDatabase;
+    private readonly IAdsAdapter adsAdapter;
 
     private bool isOpenedLevel;
 
     public LevelViewPresenter(GamePresenter presenter, Transform transform,
-        LevelDatabase levelDatabase) : base(presenter, transform)
+        LevelDatabase levelDatabase, IAdsAdapter adsAdapter) : base(presenter, transform)
     {
         this.levelDatabase = levelDatabase;
         this.levelDatabase.OnUpdateBox += OnUpdateBoxHandler;
+        this.adsAdapter = adsAdapter;
     }
 
     protected override void AddViews()
@@ -36,6 +38,7 @@ public class LevelViewPresenter : BaseViewPresenter
 
     protected override void OnShow()
     {
+        this.adsAdapter.BannerAdapter.Show();
         base.OnShow();
         this.view.OnSelectedBox += OnSelectedBoxHandler;
         this.view.OnClickBack += OnClickBackHandler;
@@ -54,6 +57,7 @@ public class LevelViewPresenter : BaseViewPresenter
 
     protected override void OnHide()
     {
+        this.adsAdapter.BannerAdapter.Hide();
         base.OnHide();
         this.view.OnSelectedBox -= OnSelectedBoxHandler;
         this.view.OnClickBack -= OnClickBackHandler;

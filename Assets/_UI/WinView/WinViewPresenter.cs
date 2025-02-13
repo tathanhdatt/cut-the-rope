@@ -1,15 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WinViewPresenter : BaseViewPresenter
 {
     private WinView view;
-    private LevelDatabase levelDatabase;
+    private readonly LevelDatabase levelDatabase;
+    private readonly IAdsAdapter adsAdapter;
 
-    public WinViewPresenter(GamePresenter presenter,
-        Transform transform, LevelDatabase levelDatabase) : base(presenter, transform)
+    public WinViewPresenter(GamePresenter presenter, Transform transform, 
+        LevelDatabase levelDatabase, IAdsAdapter adsAdapter) : base(presenter, transform)
     {
         this.levelDatabase = levelDatabase;
+        this.adsAdapter = adsAdapter;
     }
 
     protected override void AddViews()
@@ -19,6 +20,7 @@ public class WinViewPresenter : BaseViewPresenter
 
     protected override void OnShow()
     {
+        this.adsAdapter.InterstitialAdapter.Show();
         this.view.ShowStars(this.levelDatabase
             .GetCurrentBox().GetCurrentLevelStar());
         base.OnShow();

@@ -1,10 +1,10 @@
 {
   "dependencies": {
-    "com.coffee.softmask-for-ugui": "https://github.com/mob-sakai/SoftMaskForUGUI.git?path=Packages/src",
     "com.cysharp.unitask": "file:D:/1/Assets/_myunitypackages/UniTask",
     "com.dt.attribute": "file:D:/1/Assets/_myunitypackages/com.dt/com.dt.attribute",
     "com.dt.behaviourtree.core": "file:D:/1/Assets/_myunitypackages/BehaviourTree",
     "com.dt.extension": "file:D:/1/Assets/_myunitypackages/com.dt/com.dt.extension",
+    "com.google.ads.mobile": "9.5.0",
     "com.unity.adaptiveperformance.google.android": "1.3.1",
     "com.unity.addressables.android": "1.0.4",
     "com.unity.collab-proxy": "2.6.0",
@@ -48,5 +48,15 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.google"
+      ],
+      "overrideBuiltIns": false
+    }
+  ]
 }

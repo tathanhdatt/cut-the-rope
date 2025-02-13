@@ -26,10 +26,10 @@ public class GamePresenter : MonoBehaviour
             new TransitionViewPresenter(this, transform);
         AddPresenter(transitionViewPresenter);
         WinViewPresenter winViewPresenter = new WinViewPresenter(
-            this, transform, this.manager.LevelDatabase);
+            this, transform, this.manager.LevelDatabase, this.manager.AdsAdapter);
         AddPresenter(winViewPresenter);
         LevelViewPresenter levelViewPresenter = new LevelViewPresenter(
-            this, transform, this.manager.LevelDatabase);
+            this, transform, this.manager.LevelDatabase, this.manager.AdsAdapter);
         AddPresenter(levelViewPresenter);
         GameplayViewPresenter gameplayViewPresenter = new GameplayViewPresenter(
             this, transform);
