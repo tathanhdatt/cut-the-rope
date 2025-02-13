@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading;
+using Core.AudioService;
+using Core.Service;
 using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.Extension;
@@ -34,6 +36,7 @@ public class BallTarget : MonoBehaviour
                 this.animator.Play(this.biteAnim);
                 await UniTask.WaitForSeconds(this.delayDestroyBall,
                     cancellationToken: this.cancellationTokenSource.Token);
+                PlaySound();
                 if (other == null) return;
                 Destroy(other.gameObject);
                 await UniTask.WaitForSeconds(this.delay,
@@ -45,6 +48,13 @@ public class BallTarget : MonoBehaviour
                 Debug.LogError(e.Message);
             }
         }
+    }
+
+    private async void PlaySound()
+    {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.MountOpen);
+        await UniTask.WaitForSeconds(0.3f);
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.MountClose);
     }
 
     private void OnDestroy()

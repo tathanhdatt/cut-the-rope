@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Core.AudioService;
+using Core.Service;
+using UnityEngine;
 
 public class WinViewPresenter : BaseViewPresenter
 {
@@ -21,6 +23,7 @@ public class WinViewPresenter : BaseViewPresenter
     protected override void OnShow()
     {
         this.adsAdapter.InterstitialAdapter.Show();
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Win);
         this.view.ShowStars(this.levelDatabase
             .GetCurrentBox().GetCurrentLevelStar());
         base.OnShow();
@@ -32,6 +35,7 @@ public class WinViewPresenter : BaseViewPresenter
 
     private async void OnClickNextHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         if (this.levelDatabase.GetCurrentBox().IsCurrentLevelLastLevel())
         {
             await Hide();
@@ -53,6 +57,7 @@ public class WinViewPresenter : BaseViewPresenter
 
     private async void OnClickReplayHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         Messenger.Broadcast(Message.Replay);
         Presenter.GetViewPresenter<GameplayViewPresenter>().Show();
         await Hide();
@@ -69,6 +74,7 @@ public class WinViewPresenter : BaseViewPresenter
 
     private async void OnClickHomeHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         Messenger.Broadcast(Message.ClearLevel);
         await Hide();
         Presenter.GetViewPresenter<HomeViewPresenter>().Show();

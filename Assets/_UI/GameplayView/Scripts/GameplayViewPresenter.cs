@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Core.AudioService;
+using Core.Service;
+using UnityEngine;
 
 public class GameplayViewPresenter : BaseViewPresenter
 {
@@ -24,6 +26,7 @@ public class GameplayViewPresenter : BaseViewPresenter
 
     protected override void OnShow()
     {
+        ServiceLocator.GetService<IAudioService>().PlayMusic(AudioName.Play);
         this.collectedStar = 0;
         base.OnShow();
         this.view.OnClickBack += OnClickBackHandler;
@@ -33,6 +36,7 @@ public class GameplayViewPresenter : BaseViewPresenter
 
     protected override void OnHide()
     {
+        ServiceLocator.GetService<IAudioService>().StopMusic(AudioName.Play);
         base.OnHide();
         this.view.OnClickBack -= OnClickBackHandler;
         this.view.OnClickReplay -= OnClickReplayHandler;
@@ -40,6 +44,7 @@ public class GameplayViewPresenter : BaseViewPresenter
 
     private async void OnClickBackHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         Time.timeScale = 0;
         await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
         Messenger.Broadcast(Message.ClearLevel);
@@ -51,6 +56,7 @@ public class GameplayViewPresenter : BaseViewPresenter
     
     private async void OnClickReplayHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         Time.timeScale = 0;
         this.collectedStar = 0;
         this.view.HideAllCollectedStar();

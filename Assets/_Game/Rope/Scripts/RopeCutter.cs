@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Core.AudioService;
+using Core.Service;
+using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.BehaviourTree;
 using Dt.BehaviourTree.Leaf;
@@ -22,7 +24,7 @@ public class RopeCutter : VisualNode, ILeafNode
 
     [SerializeField, ReadOnly]
     private bool isLevelWin;
-    
+
     private readonly RaycastHit2D[] hits = new RaycastHit2D[2];
 
     private readonly ContactFilter2D filter2D = new ContactFilter2D()
@@ -103,11 +105,13 @@ public class RopeCutter : VisualNode, ILeafNode
             if (cuttable == null) continue;
             if (cuttable.IsCut) continue;
             cuttable.Cut();
+            ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.RopeBreak);
             this.cutTimes--;
             if (this.cutTimes <= 0)
             {
                 TurnOffCutting();
             }
+
             break;
         }
     }

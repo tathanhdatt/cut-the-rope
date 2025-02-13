@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Core.AudioService;
+using Core.Service;
+using UnityEngine;
 
 public class HomeViewPresenter : BaseViewPresenter
 {
@@ -14,6 +16,7 @@ public class HomeViewPresenter : BaseViewPresenter
 
     protected override void OnShow()
     {
+        ServiceLocator.GetService<IAudioService>().PlayMusic(AudioName.Menu);
         base.OnShow();
         this.view.OnClickPlay += OnClickPlayHandler;
     }
@@ -26,6 +29,7 @@ public class HomeViewPresenter : BaseViewPresenter
 
     private async void OnClickPlayHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         await Hide();
         await Presenter.GetViewPresenter<LevelViewPresenter>().Show();
     }

@@ -1,5 +1,6 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
+using Core.AudioService;
+using Core.Service;
 using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.Extension;
@@ -21,12 +22,12 @@ namespace Core.Game
         [SerializeField, ReadOnly]
         private LevelPlayer levelPlayer;
 
-
         [SerializeField, ReadOnly]
         private int collectedStar;
 
         public LevelDatabase LevelDatabase { get; private set; }
         public IAdsAdapter AdsAdapter { get; private set; }
+        public IAudioService AudioService { get; private set; }
 
         private void Awake()
         {
@@ -38,8 +39,14 @@ namespace Core.Game
             Application.targetFrameRate = 60;
             InitLevelDatabase();
             InitAdsAdapter();
+            InitAudioService();
         }
 
+        private void InitAudioService()
+        {
+            AudioService = FindAnyObjectByType<NativeAudioService>();
+            ServiceLocator.Register(AudioService);
+        }
 
         private void InitLevelDatabase()
         {
@@ -111,6 +118,7 @@ namespace Core.Game
         private void CollectStarHandler()
         {
             this.collectedStar++;
+            AudioService.PlaySfx($"Star{this.collectedStar}");
             int lastStar = LevelDatabase.GetCurrentBox().GetCurrentLevelStar();
             if (this.collectedStar > lastStar)
             {

@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Core.AudioService;
+using Core.Service;
+using Cysharp.Threading.Tasks;
 using Dt.Attribute;
 using Dt.BehaviourTree;
 using Dt.BehaviourTree.Leaf;
@@ -34,10 +36,12 @@ public class ReverseGravityClicker : VisualNode, ILeafNode
             this.isCompleted = true;
             if (Physics2D.gravity.y >= 0)
             {
+                ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.BubbleBreak);
                 Physics2D.gravity = Vector2.up * this.normalGravity;
             }
             else
             {
+                ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Bubble);
                 Physics2D.gravity = Vector2.up * this.reversedGravity;
             }
 

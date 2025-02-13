@@ -1,15 +1,12 @@
 ﻿public static class AudioName
 {
-    public const string putIn = "putIn";
-    public const string takeDown = "takeDown";
-    public const string takeUp = "takeUp";
-    public const string noSpace = "noSpace";
-    public const string unbelievable = "unbelievable";
-    public const string reloadLevel = "reloadMap";
-    public const string scoreUp = "scoreUp";
-    public const string scoreUpEnd = "scoreUpEnd";
-    public const string buttonClick = "buttonClick";
-    public const string newHighScore = "newHighScore";
-    public const string newHighScoreInGame = "newHighScoreInGame";
-    public const string showLoseView = "showLoseView";
+    public const string RopeBreak = "RopeBreak";
+    public const string Menu = "Menu";
+    public const string Play = "Play";
+    public const string Bubble = "Bubble";
+    public const string BubbleBreak = "BubbleBreak";
+    public const string MountOpen = "MountOpen";
+    public const string MountClose = "MountClose";
+    public const string Tap = "Tap";
+    public const string Win = "Win";
 }

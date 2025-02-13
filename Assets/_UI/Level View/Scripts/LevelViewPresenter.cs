@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Core.AudioService;
+using Core.Service;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class LevelViewPresenter : BaseViewPresenter
@@ -57,6 +59,7 @@ public class LevelViewPresenter : BaseViewPresenter
 
     protected override void OnHide()
     {
+        ServiceLocator.GetService<IAudioService>().StopMusic(AudioName.Menu);
         this.adsAdapter.BannerAdapter.Hide();
         base.OnHide();
         this.view.OnSelectedBox -= OnSelectedBoxHandler;
@@ -66,6 +69,7 @@ public class LevelViewPresenter : BaseViewPresenter
 
     private async void OnSelectedBoxHandler(int boxId)
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         if (this.levelDatabase.IsBoxUnlocked(boxId))
         {
             this.isOpenedLevel = true;
@@ -100,6 +104,7 @@ public class LevelViewPresenter : BaseViewPresenter
 
     private async void OnClickPlayHandler(int levelId)
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
         await Hide();
         Messenger.Broadcast(Message.PlayLevel, levelId);
@@ -110,6 +115,7 @@ public class LevelViewPresenter : BaseViewPresenter
 
     private async void OnClickBackHandler()
     {
+        ServiceLocator.GetService<IAudioService>().PlaySfx(AudioName.Tap);
         if (this.isOpenedLevel)
         {
             await Presenter.GetViewPresenter<TransitionViewPresenter>().Show();
